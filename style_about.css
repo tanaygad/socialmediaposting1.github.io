@@ -1,0 +1,32 @@
+#about-content{
+    padding: 0 20vh;
+}
+.cards-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Space between cards */
+    color: black;
+}
+
+.card {
+    flex: 1; /* Allow each card to grow as needed, sharing space equally */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    background-color: #fff;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 10px;
+    text-align: center;
+    max-width: 500px; /* Optional: Set a max-width for each card for larger screens */
+}
+
+/* Optional: Media Query for Very Small Screens */
+@media (max-width: 400px) {
+    .cards-container {
+        flex-direction: column;
+    }
+
+    .card {
+        /* Adjustments for small screens if needed */
+        margin-bottom: 20px; /* Adds space between cards when stacked */
+    }
+}

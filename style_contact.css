@@ -1,0 +1,58 @@
+/* CSS for Contact Page */
+#teamcontent {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: 100px 0; /* Add some margin between the rows */
+}
+
+.team-member {
+    text-align: center;
+    margin: 5px;
+    width: 100%; /* Full width on small screens */
+    max-width: 300px; /* Maximum width for larger screens */
+    position: relative;
+}
+
+.team-member img {
+    width: 150px; /* Adjust the size of the images */
+    height: 150px;
+    border-radius: 50%; /* Circular shape */
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out;
+}
+
+.team-member p {
+    margin: 10px 0;
+    font-weight: bold;
+}
+
+.email-icon {
+    font-size: 20px;
+    vertical-align: middle;
+    margin-left: 5px;
+}
+
+
+
+/* Add this CSS to hide email by default and show it when 'visible' class is present */
+.email {
+    display: none;
+}
+
+.email.visible {
+    display: block;
+}
+
+
+@media screen and (min-width: 768px) {
+    .team-member {
+        width: 48%; /* Two members in a row on medium screens */
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .team-member {
+        width: 30%; /* Three members in a row on large screens */
+    }
+}
