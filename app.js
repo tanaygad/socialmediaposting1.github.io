@@ -88,7 +88,7 @@ var description3;
 document.addEventListener('DOMContentLoaded', function () {
     console.log("heelo");
 
-    fetch('http://localhost:5000/get-image-url')
+    fetch('https://flask-heroku-server-3.onrender.com/get-image-url')
         .then(response => {
             console.log('Response:', response);
             var loader = document.getElementById('loader-wrapper');
@@ -208,7 +208,7 @@ document.getElementById('approveButton').addEventListener('click', function () {
         // document.getElementById('contentPreview').style.display = 'block';
         // document.getElementById('platformChoice').style.display = 'none'; // Show platform choices
 
-        fetch('http://localhost:5000/get-image-url')
+        fetch('https://flask-heroku-server-3.onrender.com/get-image-url')
             .then(response => {
                 console.log('Response:', response);
                 return response.json();
@@ -238,7 +238,7 @@ document.getElementById('approveButton').addEventListener('click', function () {
 
                 console.log(json);
 
-                return fetch("http://localhost:5000/send-approval", {
+                return fetch("https://flask-heroku-server-3.onrender.com/send-approval", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -292,7 +292,7 @@ document.getElementById('rejectButton').addEventListener('click', function () {
     const isButton1Active = button1.classList.contains('active');
     const isButton2Active = button2.classList.contains('active');
     const isButton3Active = button3.classList.contains('active');
-    fetch('http://localhost:5000/get-image-url')
+    fetch('https://flask-heroku-server-3.onrender.com/get-image-url')
         .then(response => {
             console.log('Response:', response);
             return response.json();
@@ -320,7 +320,7 @@ document.getElementById('rejectButton').addEventListener('click', function () {
 
             console.log(json);
 
-            return fetch("http://localhost:5000/send-approval", {
+            return fetch("https://flask-heroku-server-3.onrender.com/send-approval", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

@@ -47,7 +47,7 @@ function updateData() {
 
     console.log(json);
 
-    return fetch("http://localhost:5000/edit", {
+    return fetch("https://flask-heroku-server-3.onrender.com/edit", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -108,7 +108,7 @@ function toggleMenu() {
 document.addEventListener('DOMContentLoaded', function() {
     console.log("heelo");
 
-    fetch('http://localhost:5000/view-doc')
+    fetch('https://flask-heroku-server-3.onrender.com/view-doc')
     .then(response => {
         console.log('Response:', response);
         return response.json();

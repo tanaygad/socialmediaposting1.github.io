@@ -52,7 +52,7 @@ function rejected() {
 
     console.log(json);
 
-    fetch("http://localhost:5000/rej", {
+    fetch("https://flask-heroku-server-3.onrender.com/rej", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -75,7 +75,7 @@ function fn(x)
 document.addEventListener('DOMContentLoaded', function() {
     console.log("heelo");
 
-    fetch('http://localhost:5000/view-doc')
+    fetch('https://flask-heroku-server-3.onrender.com/view-doc')
     .then(response => {
         console.log('Response:', response);
         return response.json();
