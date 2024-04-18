@@ -2,6 +2,18 @@
 
 // };
 var selected="10:00";
+// Get today's date
+ let today = new Date();
+
+ // Format today's date as yyyy-mm-dd
+ let dd = String(today.getDate()).padStart(2, '0');
+ let mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
+ let yyyy = today.getFullYear();
+
+ today = yyyy + '-' + mm + '-' + dd;
+
+ // Set the value of the input element to today's date
+ document.getElementById('start').value = today;
 
 function convertToTimeObject(timeString) {
     // Split the time string into hours, minutes, and am/pm indicator
@@ -140,12 +152,8 @@ document.getElementById('scheduleButton').addEventListener('click', function () 
     const time=convertToTimeObject(selected);
     console.log(time)
     console.log(dateControl.value)
-    if (dateControl.value == "2018-07-22") {
-        alert('Enter a schedule date first before approving')
-        document.getElementById("platformChoice").style.display = "none";
-        document.getElementById('contentPreview').style.display = 'block';
-    }
-    else {
+    
+    {
         document.getElementById('contentPreview').style.display = 'none';
         document.getElementById('platformChoice').style.display = 'block'; // Show platform choices
     }
