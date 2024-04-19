@@ -130,8 +130,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.getElementById("start").value=data[i].date;
                 // document.getElementById("timeInput").value=data[i].time;
                 selected=data[i].time;
+                selected=selected.toString()+":00";
                 var dropdownBtn = document.querySelector('#myDropdown .dropbtn');
-                dropdownBtn.textContent = "Time: " + selected+":00";
+                dropdownBtn.textContent = "Time: " + selected;
                 url_item=data[i].url; 
                 break;
             }
