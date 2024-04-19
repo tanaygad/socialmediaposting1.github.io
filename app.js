@@ -316,6 +316,7 @@ document.getElementById('rejectButton').addEventListener('click', function () {
                 url: url_1,
                 approved: -1,
                 date: "2021-02-21",
+                time: 0,
             };
 
             console.log(json);
@@ -338,11 +339,11 @@ document.getElementById('rejectButton').addEventListener('click', function () {
             }
         })
         .catch(error => console.error('Error:', error))
-        // .finally(() => {
-        //     setTimeout(function () {
-        //         location.reload();
-        //     }, 100); // Reload the page after 100 milliseconds
-        // });
+        .finally(() => {
+            setTimeout(function () {
+                location.reload();
+            }, 100); // Reload the page after 100 milliseconds
+        });
 });
 
 const buttons = document.querySelectorAll('.btn');
