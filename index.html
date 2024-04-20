@@ -1,111 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Content Preview and Approval</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Delius&family=Klee+One&family=Salsa&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Password Input</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        background-image: url('https://raw.githubusercontent.com/Samarth23-sudo/ClubArtizen/main/Club%20Artizen%20Logo%20Circle.png'); /* Replace 'background.jpg' with your image file */
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
+    .container {
+        width: 300px;
+        background-color: rgba(255, 255, 255, 0.8); /* Adding opacity for better readability */
+        border-radius: 5px;
+        padding: 20px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+        margin-top: 0;
+    }
+
+    input[type="password"] {
+        width: calc(100% - 70px);
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+    }
+
+    button {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #0056b3;
+    }
+
+</style>
 </head>
+<body>
 
-<body class="klee-one-regular">
-    <div id="loader-wrapper">
-        <div aria-label="Orange and tan hamster running in a metal wheel" role="img" class="wheel-and-hamster">
-            <div class="wheel"></div>
-            <div class="hamster">
-                <div class="hamster__body">
-                    <div class="hamster__head">
-                        <div class="hamster__ear"></div>
-                        <div class="hamster__eye"></div>
-                        <div class="hamster__nose"></div>
-                    </div>
-                    <div class="hamster__limb hamster__limb--fr"></div>
-                    <div class="hamster__limb hamster__limb--fl"></div>
-                    <div class="hamster__limb hamster__limb--br"></div>
-                    <div class="hamster__limb hamster__limb--bl"></div>
-                    <div class="hamster__tail"></div>
-                </div>
-            </div>
-            <div class="spoke"></div>
-        </div>
-    </div>
-    
-    <header>
-        <div class="menu-icon" onclick="toggleMenu()">☰</div> <!-- Menu Icon stays outside and above the navbar -->
-    </header>
-    <div class="navbar" id="navbar">
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact Us</a></li>
-                <li><a href="howToUse.html">How To Use</a></li>
-                <li><a href="view.html">View Schedule</a></li>
-            </ul>
-        </nav>
-    </div>
+<div class="container">
+    <h2>Enter Password:</h2>
+    <input type="password" id="passwordInput">
+    <button onclick="sendPassword()">Submit</button>
+</div>
 
+<script>
+function sendPassword() {
+    var password = document.getElementById("passwordInput").value;
+    var data = { "password": password };
+    var passflag = 0;
+    fetch('https://flask-heroku-server-3.onrender.com/jtop', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => {
+        console.log(response);
+        if (!response.ok) {
+            throw new Error('Network response was not ok');            
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log('Server response:', data);
+        if(data['passflag'] == 1) {
+            console.log("Works");
+            passflag = 1;
+        }
+    })
+    .catch(error => {
+        console.error('There was a problem with the fetch operation:', error);
+    })
+    .finally(() => {
+        setTimeout(function () {
+            if(passflag == 1) {
+                window.location.href = "home.html";
+            } else {
+                alert("Wrong password, retry again");
+                location.reload();
+            }
+        }, 100); // Reload the page after 100 milliseconds
+    });
+}
+</script>
 
-    <main>
-
-        <h1>Schedule, Edit, Post Your Social Media Content With Us</h1>
-
-        
-        <section id="contentPreview" class="card" class="salsa-regular">
-            <div id="imageContainer">
-                <img id="previewImage" src="" alt="Preview Image">
-            </div>
-            <div id="textContainer" style="color: black;font-size: 20px;background-color: bisque;width:480px;margin-top: 10px; padding:10px;">
-                <!-- <textarea id="textContent" placeholder=""></textarea> -->
-                
-            </div>
-            <div class="Content_type">
-                <button id="craft-stories" class="btn">Craft Stories</button>
-                <button id="blogs" class="btn">Blogs</button>
-                <button id="products" class="btn active">Products</button>   <!--initially Product's button class is active -->
-            </div>
-    
-            <div class="buttons-container">
-                <button id="editButton">Edit</button>
-                <button id="scheduleButton">Schedule</button>
-                <button id="rejectButton">Reject</button>
-            </div>
-            <div id="Schedule_container">
-                <label for="start">Schedule:</label>
-                <input type="date" id="start" name="trip-start">
-                <div class="dropdown" id="myDropdown">
-                    <button class="dropbtn" style="background-color: white;color: black;">Time: 10:00 </button>
-                    <div class="dropdown-content">
-                      <a href="#">10:00</a>
-                      <a href="#">13:00</a>
-                      <a href="#">15:00</a>
-                      <a href="#">18:00 </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section id="platformChoice" style="display:none;" class="salsa-regular">
-            <div id="checkboxes">
-                <input type="checkbox" id="Insta" name="checkbox1">
-                <label for="checkbox1">Post on  Instagram</label><br>
-                <input type="checkbox" id="Fb" name="checkbox2">
-                <label for="checkbox2">Post on Facebook</label><br>
-                <input type="checkbox" id="Story" name="checkbox3">
-                <label for="checkbox3">Add to Story</label><br>
-            </div>
-            <!-- <button onclick="postToPlatform('Instagram')">Post to Instagram</button>
-            <button onclick="postToPlatform('Facebook')">Post to Facebook</button> -->
-            <div class="Approval">
-            <button id="approveButton">Approve</button>
-            </div>
-        </section>
-    </main>
-
-    <script src='app.js'></script>
 </body>
-
 </html>

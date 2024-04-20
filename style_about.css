@@ -1,23 +1,39 @@
 #about-content{
     padding: 0 20vh;
+    text-align: center; /* Center the content */
+
 }
+
+#description{
+    padding: 0 20vh;
+    text-align: center; /* Center the content */
+
+
+}
+
 .cards-container {
     display: flex;
+    flex-wrap: wrap; /* Allow cards to wrap to the next line on smaller screens */
     justify-content: center;
     gap: 20px; /* Space between cards */
     color: black;
+    align-items: center;
+    align-content: center;
 }
 
 .card {
-    flex: 1; /* Allow each card to grow as needed, sharing space equally */
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    background-color: #fff;
-    padding: 20px;
-    margin-top: 20px;
-    border-radius: 10px;
-    text-align: center;
-    max-width: 500px; /* Optional: Set a max-width for each card for larger screens */
+    height: 200px;
+    width: calc(50% - 20px); /* Set card width to half minus the gap */
+    max-width: 450px; /* Limit card width to 400px */
+    background-color: white;
+    border: solid black;
+    border-radius: 2vmin;
+    box-sizing: border-box; /* Include border in the width calculation */
+    margin: 10px; /* Add margin for spacing between cards */
+    text-align: center; /* Center the content */
+
 }
+
 
 /* Optional: Media Query for Very Small Screens */
 @media (max-width: 400px) {

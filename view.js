@@ -93,6 +93,16 @@ document.addEventListener('DOMContentLoaded', function() {
             section.className = 'CARDS';
             
             // Create and append the image container
+            var NameContainer = document.createElement('div');
+            NameContainer.id = 'NameContainer' + i;
+            NameContainer.style.color = 'black'; // Example CSS property
+            NameContainer.style.fontSize = '25px'; // Another example CSS property
+            NameContainer.style.textAlign = 'center'; // Another example CSS property
+            NameContainer.style.fontWeight = 'bolder'; // Another example CSS property
+            // var nameHeading = document.createElement('h3');
+            NameContainer.textContent = data[i].name;
+            // NameContainer.appendChild(nameHeading);
+            section.appendChild(NameContainer);
             var imageContainer = document.createElement('div');
             imageContainer.id = 'imageContainer';
             var previewImage = document.createElement('img');

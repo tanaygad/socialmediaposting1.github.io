@@ -6,8 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Content Preview and Approval</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="style_edit2.css">
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Delius&family=Klee+One&family=Salsa&display=swap" rel="stylesheet">
@@ -57,24 +55,31 @@
         <h1>Schedule, Edit, Post Your Social Media Content With Us</h1>
 
         
-        <section id="contentPreview" class="card" class="salsa-regular" style="align-items: center;">
+        <section id="contentPreview" class="card" class="salsa-regular">
+            <div id="NameContainer" style="color:black;text-align: center;font-size: 25px;font-weight:bold;"></div>
             <div id="imageContainer">
                 <img id="previewImage" src="" alt="Preview Image">
             </div>
-            <br>
-            <div style="color:black;text-align: center;font-size: 18px;"><b>Edit Caption</b></div>
-            <form id="Caption_id">
-                <label for="form_caption_id">Data:</label>
-                <textarea id="form_caption_id" name="form_caption_id" required="" style="width: 100%; height: 200px;color: black;font-size: 15px;background-color: bisque;"></textarea>
-                <br>
-            </form>
-            <br>
-            <div style="color:black;text-align: center;font-size: 18px;"><b>Edit Date</b></div>
-            <div style="text-align: center;">
-                <input type="date" id="start" name="trip-start"/>
-                <!-- <input type="time" id="timeInput" name="time" value="09:00"> -->
+            <div id="textContainer" style="color: black;font-size: 20px;background-color: bisque;width:480px;margin-top: 10px; padding:10px;">
+                <!-- <textarea id="textContent" placeholder=""></textarea> -->
+                
+            </div>
+            <div class="Content_type">
+                <button id="craft-stories" class="btn">Craft Stories</button>
+                <button id="blogs" class="btn">Blogs</button>
+                <button id="products" class="btn active">Products</button>   <!--initially Product's button class is active -->
+            </div>
+    
+            <div class="buttons-container">
+                <button id="editButton">Edit</button>
+                <button id="scheduleButton">Schedule</button>
+                <button id="rejectButton">Reject</button>
+            </div>
+            <div id="Schedule_container">
+                <label for="start">Schedule:</label>
+                <input type="date" id="start" name="trip-start">
                 <div class="dropdown" id="myDropdown">
-                    <button class="dropbtn" style="background-color: white;color: black;">Time: </button>
+                    <button class="dropbtn" style="background-color: white;color: black;">Time: 10:00 </button>
                     <div class="dropdown-content">
                       <a href="#">10:00</a>
                       <a href="#">13:00</a>
@@ -82,15 +87,26 @@
                       <a href="#">18:00 </a>
                     </div>
                 </div>
-                <br>
-                <br>
-                <button type="button" onclick="updateData()">Update Data</button>
             </div>
-            
+        </section>
+        <section id="platformChoice" style="display:none;" class="salsa-regular">
+            <div id="checkboxes">
+                <input type="checkbox" id="Insta" name="checkbox1">
+                <label for="checkbox1">Post on  Instagram</label><br>
+                <input type="checkbox" id="Fb" name="checkbox2">
+                <label for="checkbox2">Post on Facebook</label><br>
+                <input type="checkbox" id="Story" name="checkbox3">
+                <label for="checkbox3">Add to Story</label><br>
+            </div>
+            <!-- <button onclick="postToPlatform('Instagram')">Post to Instagram</button>
+            <button onclick="postToPlatform('Facebook')">Post to Facebook</button> -->
+            <div class="Approval">
+            <button id="approveButton">Approve</button>
+            </div>
         </section>
     </main>
 
-    <script src='edit2.js'></script>
+    <script src='app.js'></script>
 </body>
 
 </html>

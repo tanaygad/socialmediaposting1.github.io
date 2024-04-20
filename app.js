@@ -84,6 +84,9 @@ var url3;
 var description1;
 var description2;
 var description3;
+var name1;
+var name2;
+var name3;
 
 document.addEventListener('DOMContentLoaded', function () {
     console.log("heelo");
@@ -104,6 +107,9 @@ document.addEventListener('DOMContentLoaded', function () {
             description2 = data.description2;   // craft
             imageUrl3 = data.image_url3
             description3 = data.description3;   // blog
+            name1=data.name1;
+            name2=data.name2;
+            name3=data.name3;
             const button1 = document.getElementById('products');
             const button2 = document.getElementById('craft-stories');
             const button3 = document.getElementById('blogs');
@@ -122,6 +128,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 document.getElementById('previewImage').src = imageUrl1;
                 const textContainer = document.getElementById('textContainer');
                 textContainer.textContent = description1;
+                const NameContainer = document.getElementById('NameContainer');
+                NameContainer.textContent=name1;
             }
 
 
@@ -401,6 +409,8 @@ function buttonClickHandler() {
         document.getElementById('previewImage').src = imageUrl2;
         const textContainer = document.getElementById('textContainer');
         textContainer.textContent = description2;
+        const NameContainer = document.getElementById('NameContainer');
+        NameContainer.textContent=name2;
     }
 
 
@@ -408,11 +418,15 @@ function buttonClickHandler() {
         document.getElementById('previewImage').src = imageUrl1;
         const textContainer = document.getElementById('textContainer');
         textContainer.textContent = description1;
+        const NameContainer = document.getElementById('NameContainer');
+        NameContainer.textContent=name1;
     }
     if (isButton3Active) {
         document.getElementById('previewImage').src = imageUrl3;
         const textContainer = document.getElementById('textContainer');
         textContainer.textContent = description3;
+        const NameContainer = document.getElementById('NameContainer');
+        NameContainer.textContent=name3;
     }
 }
 
