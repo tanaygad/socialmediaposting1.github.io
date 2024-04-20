@@ -52,20 +52,24 @@
     <script>
         // Function to retrieve the data from the URL
         var recieved_data;
+        var url;
+        var cap;
+
+        function toggleMenu() {
+            var navbar = document.getElementById("navbar");
+            if (navbar.style.left === '0px') {
+                navbar.style.left = '-250px'; // Hide
+            } else {
+                navbar.style.left = '0px'; // Show
+            }
+        }
+
         function getDataFromURL() {
             // Get the data parameter from the URL
             var urlParams = new URLSearchParams(window.location.search);
-            var data = urlParams.get('data');
-
+            var data2 = urlParams.get('data');
             // Display the data on the page
-            recieved_data = decodeURIComponent(data);
-            document.getElementById("form_caption_id").value = decodeURIComponent(data);
-            
-        }
-
-        // Function to update the data
-        function updateData() {
-            
+            data1 = decodeURIComponent(data2);
             fetch('https://flask-heroku-server-3.onrender.com/get-image-url')
                 .then(response => {
                     console.log('Response:', response);
@@ -73,32 +77,54 @@
                 })
                 .then(data => {
                     console.log(data);
-                    console.log(recieved_data)
-                    var url_1;
-                    if(data.description1 == recieved_data)
+                    console.log(data1)
+                    if(data1==0)
                     {
-                        url_1 = data.url1;
-                        console.log("yes")
+                        url=data.url1;
+                        document.getElementById("form_caption_id").value =data.description1;
+                        // console.log("A")
+                        // console.log(data.description1)
                     }
-                    if(data.description2 == recieved_data)
+                    else if(data1==1)
                     {
-                        url_1 = data.url2;
-                        console.log("yes")
+                        url=data.url2;
+                        document.getElementById("form_caption_id").value =data.description2;
+                        // console.log("AA")
                     }
-                    if(data.description2 == recieved_data)
+                    else if(data1==2)
                     {
-                        url_1 = data.url2;
-                        console.log("yes")
+                        url=data.url3;
+                        document.getElementById("form_caption_id").value =data.description3;
+                        // console.log("AAA")
                     }
-                    
-                    var updatedData = document.getElementById("form_caption_id").value;
-                    const json = {
-                        url: url_1,
-                        updateData: updatedData,
-                    };
+                    // else
+                    // {
+                    //     // console.log("AAAA")
+                    // }
+                })
+            // document.getElementById("form_caption_id").value = cap;
+            // console.log(data1);
+            // console.log(cap);
+            // console.log(url);
+        }
 
-                    console.log(json);
+        // Function to update the data
+        function updateData() {
+            console.log("?");
+            console.log(url);
+            var updatedData = document.getElementById("form_caption_id").value;
+            const json = {
+                url: url,
+                updateData: updatedData,
+            };
 
+            console.log(json);
+            fetch('https://flask-heroku-server-3.onrender.com/get-image-url')
+                .then(response => {
+                    console.log('Response:', response);
+                    return response.json();
+                })
+                .then(data => {
                     return fetch("https://flask-heroku-server-3.onrender.com/send-edited-response", {
                         method: "POST",
                         headers: {
@@ -107,16 +133,12 @@
                         body: JSON.stringify(json),
                     });
                 })
-                .then(response => {
-                    if (response.ok) {
-                        console.log('Data successfully sent to /send-edited-response');
-                        // Handle success as needed
-                    } else {
-                        console.error('Failed to send data to /send-edited-response');
-                        // Handle failure as needed
-                    }
-                })
-                .catch(error => console.error('Error:', error));
+                .finally(() => {
+                setTimeout(function () {
+                    // location.reload();
+                    window.location.href = "index.html";
+                }, 100); // Reload the page after 100 milliseconds
+            });
         }
 
 
@@ -124,7 +146,6 @@
         // Call the function when the page loads
         getDataFromURL();
     </script>
-    <script src='app.js'></script>
 
 
 </body>
