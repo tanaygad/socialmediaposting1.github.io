@@ -140,7 +140,20 @@ document.getElementById('editButton').addEventListener('click', function () {
     var data = document.getElementById('textContainer').textContent;
 
     // Encode the data to be included in the URL
-    var encodedData = encodeURIComponent(data);
+    const button1 = document.getElementById('products');
+    const button2 = document.getElementById('craft-stories');
+    const button3 = document.getElementById('blogs');
+    const isButton1Active = button1.classList.contains('active');
+    const isButton2Active = button2.classList.contains('active');
+    const isButton3Active = button3.classList.contains('active');
+    var variable=-1;
+    if(isButton1Active)
+        variable=0;
+    if(isButton2Active)
+        variable=1;
+    if(isButton3Active)
+        variable=2;
+    var encodedData = encodeURIComponent(variable);
 
     // Redirect to the second page with data as a parameter
     window.location.href = "edit.html?data=" + encodedData;
